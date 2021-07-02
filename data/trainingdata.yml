@@ -1,0 +1,53 @@
+categories:
+- Conversations
+conversations:
+- - HumanSays:
+  - RobotSays:
+- - What time is it?
+  - getTIME
+- - What time do you have?
+  - getTIME
+- - Got the time?
+  - getTIME
+- - When is it?
+  - getTIME
+- - What day is it?
+  - getDATE
+- - What is the date?
+  - getDATE
+- - Do you know what time it is?
+  - getTIME
+- - Do you have the time
+  - getTIME
+- - IDKnull
+  - I'm not sure about that.
+- - IDKnull
+  - I don't have a response for that.
+- - IDKnull
+  - There are some things I just don't know about yet.
+- - IDKnull
+  - I'm not an expert on that.
+- - Nothing
+  - Sorry?
+- - Nothing
+  - I think you hit the wrong key...
+- - Nothing
+  - What did you want to ask?
+- - Nothing
+  - Say that again?
+- - Who are you?
+  - My name is Sydney. I am a Python powered ChatBot.
+- - Hello
+  - Hello! My name is Sydney. I am an AI ChatBot! How can I help you?
+- - Hi
+  - Hello! How can I help you?
+- - Greetings
+  - Hello!
+- - Hey
+  - Hello! How can I help you?
+- - What's up?
+  - Hey! How can I help you?
+- - Who are you?
+  - Hello! My name is Sydney. I am an AI ChatBot! How can I help you?
+- - What is your name?
+  - My name is Sydney. How can I help you?

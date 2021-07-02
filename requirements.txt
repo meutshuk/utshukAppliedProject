@@ -1,0 +1,14 @@
+# Used by pip to install required python packages
+# Usage: pip install -r requirements.txt
+
+Flask>=1.0.0,<1.1
+chatterbot==0.8.7
+
+Pillow>=5.0
+pytz>=2018
+pyperclip
+
+playsound~=1.2.2
+gtts~=2.2.2
+requests~=2.25.1
+beautifulsoup4~=4.9.3
