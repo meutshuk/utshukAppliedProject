@@ -31,9 +31,7 @@
       </div>
       <div id="userInput">
         <input id="textInput" onfocus="this.value=''" type="text" name="msg" placeholder="Message" autofocus>
-        <input id="micInput" onclick="startConverting()" type="submit" value="Mic">
-        <input id="buttonInput" onclick="stopConverting()" type="submit" value="Send">
-
+        <input id="buttonInput" onmouseover="startConverting();" onmouseleave="stopConverting()" onclick="stopConverting()" type="submit" value="Send">
 
       </div>
 
@@ -54,8 +52,9 @@
 			document.getElementById('typing').style.visibility = "hidden";
             playAudio2();
             $("#chatbox").append(botHtml);
+            let apple = new Audio("/audio/sound.mp3");
+            apple.play();
             document.getElementById("buttonInput").disabled = false;
-            document.getElementById("micInput").disabled = false;
             document.getElementById("textInput").disabled = false;
             document.getElementById("textInput").focus();
             //document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
@@ -63,13 +62,13 @@
         }
         function getBotResponse() {
           $.get("/get", { msg: rawText }).done(function(data) {
-            var sound = new Audio('')
             var botHtml = '<table class="botText" border="0" width="85%"><tr><td width="70" valign="top"><img class="avatar" src="{{botAvatar}}" align="left" style="margin: 3px;"></td><td valign="top">' + data + '</td></tr></table>';
 			document.getElementById('typing').style.visibility = "hidden";
             playAudio2();
             $("#chatbox").append(botHtml);
+            let apple = new Audio("/audio/sound.mp3");
+            apple.play();
             document.getElementById("buttonInput").disabled = false;
-            document.getElementById("micInput").disabled = false;
             document.getElementById("textInput").disabled = false;
             document.getElementById("textInput").focus();
             //document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
@@ -88,7 +87,6 @@
             playAudio2();
             $("#chatbox").append(botHtml);
             document.getElementById("buttonInput").disabled = false;
-            document.getElementById("micInput").disabled = false;
             document.getElementById("textInput").disabled = false;
             document.getElementById("textInput").focus();
             //document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
@@ -99,7 +97,6 @@
             if(e.which == 13) {
               playAudio1();
               document.getElementById("buttonInput").disabled = true;
-              document.getElementById("micInput").disabled = true;
               document.getElementById("textInput").disabled = true;
 				      rawText = $("#textInput").val();
               if(rawText.trim() == ""){
@@ -120,7 +117,6 @@
         $("#buttonInput").click(function() {
           playAudio1();
           document.getElementById("buttonInput").disabled = true;
-          document.getElementById("micInput").disabled = true;
           document.getElementById("textInput").disabled = true;
 				rawText = $("#textInput").val();
         if(rawText.trim() == ""){
@@ -142,9 +138,6 @@
 
         var overlay = document.getElementById("overlay");
 
-            const micInput = document.getElementById("micInput")
-            const buttonInput = document.getElementById('buttonInput')
-            buttonInput.style.display="none"
 
 
 			var r = document.getElementById('textInput');
@@ -152,13 +145,9 @@
 
 			//function to start listening to voice and then convert it to text
 			function startConverting () {
-
-			micInput.style.display="none"
-			buttonInput.style.display=""
-
-
+			    console.log("apple");
 				if('webkitSpeechRecognition' in window){
-
+				    console.log("apple1");
 
 					speechRecognizer.continuous = true;
 					speechRecognizer.interimResults = true;
@@ -166,7 +155,7 @@
 					speechRecognizer.start();
 					var finalTranscripts = '';
 					speechRecognizer.onresult = function(event){
-
+					    console.log("apple3");
 						var interimTranscripts = '';
 						for(var i = event.resultIndex; i < event.results.length; i++){
 							var transcript = event.results[i][0].transcript;
@@ -190,9 +179,7 @@
 			function stopConverting()
 			{
                 speechRecognizer.stop();
-                micInput.style.display=""
-			buttonInput.style.display="none"
-                //document.getElementById("buttonInput").click();
+                document.getElementById("buttonInput").click();
 			}
       </script>
     </div>

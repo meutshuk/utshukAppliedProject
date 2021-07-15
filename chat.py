@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 from flask import Flask, render_template, request
 from chatterbot import ChatBot
 from chatterbot.response_selection import get_random_response
-import random
 import csv
 import os
 from botConfig import myBotName, chatBG, botAvatar, useGoogle, confidenceLevel
@@ -52,12 +51,14 @@ bot = ChatBot(
 bot.read_only = True
 print("Bot Learn Read Only:" + str(bot.read_only))
 
+#path = os.getcwd()+""
+#os.chdir(path)
+
 
 def sound(text):
     tts = gTTS(text=text, lang='en')
     filename = 'sound.mp3'
     tts.save(filename)
-
     playsound.playsound(filename)
     os.remove(filename)
 
@@ -65,6 +66,7 @@ def sound(text):
 def weather(text):
     url = "https://www.google.com/search?q=" + text
     html = requests.get(url).content
+
 
     # getting raw data
     soup = BeautifulSoup(html, 'html.parser')

@@ -71,6 +71,12 @@ h3 {
     font-size: 17px;
 }
 
+#micInput {
+    padding: 3px;
+    font-family: monospace;
+    font-size: 17px;
+}
+
 button{
     padding: 3px;
     font-family: monospace;
