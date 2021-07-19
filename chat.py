@@ -12,6 +12,7 @@ from gtts import gTTS
 
 # Experimental Date Time
 from dateTime import getTime, getDate
+from extraModule import calculator, calender, passwordGenerator, notepad, direction, openMap, searchYoutube, coinToss
 
 import logging
 
@@ -38,6 +39,9 @@ bot = ChatBot(
             'import_path': 'chatterbot.logic.BestMatch'
         },
         {
+            'import_path': 'chatterbot.logic.MathematicalEvaluation'
+        },
+        {
             'import_path': 'chatterbot.logic.LowConfidenceAdapter',
             'threshold': confidenceLevel,
             'default_response': 'Sorry I dont know'
@@ -51,8 +55,9 @@ bot = ChatBot(
 bot.read_only = True
 print("Bot Learn Read Only:" + str(bot.read_only))
 
-#path = os.getcwd()+""
-#os.chdir(path)
+
+# path = os.getcwd()+""
+# os.chdir(path)
 
 
 def sound(text):
@@ -66,7 +71,6 @@ def sound(text):
 def weather(text):
     url = "https://www.google.com/search?q=" + text
     html = requests.get(url).content
-
 
     # getting raw data
     soup = BeautifulSoup(html, 'html.parser')
@@ -100,9 +104,20 @@ def home():
 def get_bot_response():
     userText = request.args.get('msg')
 
+    youtubeWordList = ['search', 'youtube']
+    if all(x in userText.lower() for x in youtubeWordList):
+        botReply = searchYoutube(userText)
+        sound("youtube opened")
+        return botReply
+
     for i in userText.split():
         if i == 'weather':
             botReply = weather(userText)
+            return botReply
+
+        if i == 'direction':
+            botReply = direction(userText)
+
             return botReply
 
     botReply = str(bot.get_response(userText))
@@ -121,6 +136,25 @@ def get_bot_response():
         botReply = getDate()
         sound(botReply)
         print(getDate())
+
+    elif botReply == "Calender":
+        botReply = calender()
+        sound("Ok")
+    elif botReply == "Calculator":
+        botReply = calculator()
+        sound("Ok")
+    elif botReply == "Notepad":
+        botReply = notepad()
+        sound("Ok")
+    elif botReply == 'password':
+        botReply = passwordGenerator()
+        sound("Password generated")
+    elif botReply == 'map':
+        botReply = openMap()
+        sound("Ok")
+    elif botReply == 'coinToss':
+        botReply = coinToss()
+        sound(botReply)
     else:
         sound(botReply)
 

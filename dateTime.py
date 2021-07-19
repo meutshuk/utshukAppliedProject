@@ -6,9 +6,10 @@ from datetime import date
 import calendar
 from botConfig import botTimeZone
 
+
 def getTime():
     now = datetime.now(pytz.timezone(botTimeZone))
-    #now = datetime.utcnow()
+    # now = datetime.utcnow()
     myTimeZone = " EST"
     mm = str(now.month)
     dd = str(now.day)
@@ -28,6 +29,7 @@ def getTime():
     weekday = calendar.day_name[mydate.weekday()]
     return "The time is now " + hour + ":" + minute + ampm + myTimeZone
 
+
 def getDate():
     now = datetime.now(pytz.timezone(botTimeZone))
     mm = str(now.month)
@@ -37,9 +39,10 @@ def getDate():
     minute = str(now.minute)
     second = str(now.second)
     weekday = now.weekday()
-    week = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
+    week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     weekdayName = week[weekday]
     return "Today is " + weekdayName + ", " + mm + "/" + dd + "/" + yyyy
+
 
 print("Hello there!")
 print(getTime())
